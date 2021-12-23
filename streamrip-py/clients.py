@@ -572,8 +572,8 @@ class DeezerClient(Client):
         except deezer.WrongLicence:
             raise NonStreamable(
                 "The requested quality is not available with your subscription. "
-                "Deezer HiFi is required for quality 2. Otherwise, the maximum "
-                "quality allowed is 1."
+                "Deezer HiFi has a max quality of 2, and Deezer Premium has a max "
+                "quality of 1."
             )
 
         if url is None:
