@@ -7,10 +7,10 @@ license = "GPL-3.0-only"
 readme = "README.md"
 homepage = "https://github.com/nathom/streamrip"
 repository = "https://github.com/nathom/streamrip"
-include = ["streamrip/config.toml"]
+include = ["streamrip-py/config.toml"]
 packages = [
-    { include = "streamrip" },
-    { include = "rip" },
+    { include = "streamrip-py" },
+    { include = "rip-py" },
 ]
 keywords = ["hi-res", "free", "music", "download", "tqdm"]
 classifiers = [

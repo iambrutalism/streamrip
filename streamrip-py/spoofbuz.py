@@ -59,6 +59,7 @@ class Spoofer:
         for match in seed_matches:
             seed, timezone = match.group("seed", "timezone")
             secrets[timezone] = [seed]
+        print(secrets)
         """
         The code that follows switches around the first and second timezone.
         Qobuz uses two ternary (a shortened if statement) conditions that

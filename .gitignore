@@ -24,4 +24,4 @@ StreamripDownloads
 
 # Added by cargo
 
-/target
+target/
