@@ -402,7 +402,9 @@ class QobuzClient(Client):
             raise InvalidAppSecretError("Cannot find app secret")
 
         quality = int(get_quality(quality, self.source))  # type: ignore
+        print(f"{quality=} {track_id=}, {unix_ts=}, {secret=}")
         r_sig = f"trackgetFileUrlformat_id{quality}intentstreamtrack_id{track_id}{unix_ts}{secret}"
+        print(r_sig)
         logger.debug("Raw request signature: %s", r_sig)
         r_sig_hashed = hashlib.md5(r_sig.encode("utf-8")).hexdigest()
         logger.debug("Hashed request signature: %s", r_sig_hashed)
@@ -414,6 +416,7 @@ class QobuzClient(Client):
             "format_id": quality,
             "intent": "stream",
         }
+        print(params)
         response, status_code = self._api_request("track/getFileUrl", params)
         if status_code == 400:
             raise InvalidAppSecretError("Invalid app secret from params %s" % params)
@@ -446,6 +449,7 @@ class QobuzClient(Client):
         :rtype: bool
         """
         try:
+            print(f"testing {secret=}")
             self._api_get_file_url("19512574", sec=secret)
             return secret
         except InvalidAppSecretError as error:

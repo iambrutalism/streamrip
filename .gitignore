@@ -25,3 +25,4 @@ StreamripDownloads
 # Added by cargo
 
 target/
+credentials.txt

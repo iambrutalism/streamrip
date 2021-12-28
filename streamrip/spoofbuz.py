@@ -59,7 +59,8 @@ class Spoofer:
         for match in seed_matches:
             seed, timezone = match.group("seed", "timezone")
             secrets[timezone] = [seed]
-        print(secrets)
+
+        print(f"{secrets=}")
         """
         The code that follows switches around the first and second timezone.
         Qobuz uses two ternary (a shortened if statement) conditions that
@@ -74,11 +75,13 @@ class Spoofer:
         info_extras_regex = self.info_extras_regex.format(
             timezones="|".join(timezone.capitalize() for timezone in secrets)
         )
+        print(f"{info_extras_regex=}")
         info_extras_matches = re.finditer(info_extras_regex, self.bundle)
         for match in info_extras_matches:
             timezone, info, extras = match.group("timezone", "info", "extras")
             secrets[timezone.lower()] += [info, extras]
 
+        print(f"final {secrets = }")
         for secret_pair in secrets:
             secrets[secret_pair] = base64.standard_b64decode(
                 "".join(secrets[secret_pair])[:-44]
@@ -86,4 +89,5 @@ class Spoofer:
 
         vals: List[str] = list(secrets.values())
         vals.remove("")
+        print(vals)
         return vals
